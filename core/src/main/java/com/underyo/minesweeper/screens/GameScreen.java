@@ -266,32 +266,11 @@ public class GameScreen implements Screen {
 
         // Sets viewport to board and draws game board
         gameBoardViewport.apply();
-        // game.batch.setShader(metalShader);
         game.batch.setProjectionMatrix(gameBoardCam.combined);
-
-        // bind normal map to unit 1
-        // Gdx.gl.glActiveTexture(GL20.GL_TEXTURE1);
-        // normalMap.bind(1);
-        // Gdx.gl.glActiveTexture(GL20.GL_TEXTURE0);
-
-        // tell the shader which units to sample
-        // metalShader.bind();
-        // metalShader.setUniformi("u_texture",   0);
-        // metalShader.setUniformi("u_normalMap", 1);
-        
-        // metalShader.setUniformf("u_lightPos",    gameBoardCam.position.x + 1000f, gameBoardCam.position.y + 1000f, 328f);
-        // metalShader.setUniformf("u_cameraPos",   gameBoardCam.position.x, gameBoardCam.position.y,   100f);
-        // metalShader.setUniformf("u_ambientColor",0.3f, 0.3f, 0.3f);
-        // metalShader.setUniformf("u_lightColor",  0.1f,   0.9f,   0.8f);
-        // metalShader.setUniformf("u_specularColor",0f,  1f,   1f);
-        // metalShader.setUniformf("u_shininess",   1f);
-
 
         game.batch.begin();
             drawTiles();
         game.batch.end();
-
-        game.batch.setShader(null);
 
     }
 

@@ -54,8 +54,6 @@ public class GameInstance {
             return returnBool;
         }
 
-        ArrayList<Pair> surroundingTiles = getSurroundingTilesPositions(row, col);
-
         Set<Tile> discoveredTiles = new HashSet<>();
 
         if (tile.getTileFace() == TileFace.EMPTY) {

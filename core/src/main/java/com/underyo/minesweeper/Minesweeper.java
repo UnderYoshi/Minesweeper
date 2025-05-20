@@ -8,6 +8,8 @@ import com.underyo.minesweeper.screens.GameScreen;
 /** {@link com.badlogic.gdx.ApplicationListener} implementation shared by all platforms. */
 public class Minesweeper extends Game {
     public SpriteBatch batch;
+
+    GameInstance currGameInstance;
     
     public static final int VIRTUAL_WIDTH  = 800;
     public static final int VIRTUAL_HEIGHT = 600;
@@ -18,8 +20,9 @@ public class Minesweeper extends Game {
         batch = new SpriteBatch();
         //setScreen(new MainMenuScreen(this));
 
-        GameInstance gameInstance = new GameInstance(100, 100, 1000);
-        setScreen(new GameScreen(this, gameInstance));
+        currGameInstance = new GameInstance(100, 100, 2000);
+        setScreen(new GameScreen(this, currGameInstance));
+        System.out.println("done");
     }
 
     @Override
