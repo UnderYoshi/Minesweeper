@@ -9,7 +9,6 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.glutils.ShaderProgram;
 import com.badlogic.gdx.math.Vector3;
 import com.badlogic.gdx.utils.viewport.FitViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
@@ -24,11 +23,7 @@ public class GameScreen implements Screen {
     private final int tileSize = 16;
 
     private boolean renderedOnce = false;
-
-    // Rendering variables
-    private ShaderProgram metalShader;
-    private Texture normalMap;
-
+    
     // Cameras and viewports
     private OrthographicCamera screenCam = new OrthographicCamera();
     private OrthographicCamera gameBoardCam = new OrthographicCamera();
@@ -66,17 +61,6 @@ public class GameScreen implements Screen {
 
         this.screenViewport = new FitViewport(Minesweeper.VIRTUAL_WIDTH, Minesweeper.VIRTUAL_HEIGHT, screenCam);
         this.gameBoardViewport = new FitViewport(Minesweeper.VIRTUAL_WIDTH, Minesweeper.VIRTUAL_HEIGHT, gameBoardCam);
-
-        // initialize shaders
-        ShaderProgram.pedantic = false;
-        metalShader = new ShaderProgram(
-            Gdx.files.internal("shaders/metal.vert"),
-            Gdx.files.internal("shaders/metal.frag")
-        );
-        if (!metalShader.isCompiled()) {
-            Gdx.app.error("Shader", metalShader.getLog());
-        }
-        normalMap = new Texture("sprites/TileNormal.png");
 
         // initializes tileImagePathMap
         for (TileFace tile: TileFace.values()) {
@@ -271,6 +255,10 @@ public class GameScreen implements Screen {
         game.batch.begin();
             drawTiles();
         game.batch.end();
+
+        if (gameInstance.checkWinCondition()) {
+            System.out.println("YOU ARE WINNERRR");
+        }
 
     }
 
