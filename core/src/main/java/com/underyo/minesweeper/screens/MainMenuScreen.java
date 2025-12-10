@@ -250,13 +250,13 @@ public final class MainMenuScreen implements Screen {
             int dw = boardWidthUpRepeater.update(mouseOnBoardWidthUpButton && mouseHeld, mouseOnBoardWidthUpButton && mouseJustClicked, delta)
                 + boardWidthDownRepeater.update(mouseOnBoardWidthDownButton && mouseHeld, mouseOnBoardWidthDownButton && mouseJustClicked, delta);
             if (dw != 0) {
-                boardWidth = Math.max(3, Math.min(1000, boardWidth + dw));
+                boardWidth = Math.max(1, Math.min(1000, boardWidth + dw));
             }
 
             int dh = boardHeightUpRepeater.update(mouseOnBoardHeightUpButton && mouseHeld, mouseOnBoardHeightUpButton && mouseJustClicked, delta)
                 + boardHeightDownRepeater.update(mouseOnBoardHeightDownButton && mouseHeld, mouseOnBoardHeightDownButton && mouseJustClicked, delta);
             if (dh != 0) {
-                boardHeight = Math.max(3, Math.min(1000, boardHeight + dh));
+                boardHeight = Math.max(1, Math.min(1000, boardHeight + dh));
             }
 
             int dm = minesUpRepeater.update(mouseOnMinesUpButton && mouseHeld, mouseOnMinesUpButton && mouseJustClicked, delta)
