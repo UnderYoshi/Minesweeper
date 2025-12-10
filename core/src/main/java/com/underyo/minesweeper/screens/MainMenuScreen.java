@@ -39,6 +39,7 @@ public final class MainMenuScreen implements Screen {
 
     BitmapFont font;
     BitmapFont errorFont;
+    BitmapFont titleFont;
     ErrorDisplay errorDisplay;
 
     private int buttonScale = 5;
@@ -59,6 +60,8 @@ public final class MainMenuScreen implements Screen {
         font = generator.generateFont(params);
         params.size = 120;
         errorFont = generator.generateFont(params);
+        params.size = 130;
+        titleFont = generator.generateFont(params);
         generator.dispose();
 
         errorDisplay = new ErrorDisplay(errorFont);
@@ -154,13 +157,17 @@ public final class MainMenuScreen implements Screen {
         int minesDownButtonPosY = Minesweeper.VIRTUAL_HEIGHT / 2 - smallButtonSize / 2 - smallButtonSize - buttonPadding;
         boolean mouseOnMinesDownButton = (mouseX > minesDownButtonPosX && mouseX < minesDownButtonPosX + smallButtonSize && mouseY > minesDownButtonPosY && mouseY < minesDownButtonPosY + smallButtonSize);
 
-
+        GlyphLayout titleLayout = new GlyphLayout();
         GlyphLayout layout1 = new GlyphLayout();
         GlyphLayout layout2 = new GlyphLayout();
         GlyphLayout layout3 = new GlyphLayout();
         String widthText = "Width: " + boardWidth;
         String heightText = "Height: " + boardHeight;
         String minesText = "Mines: " + minesAmount;
+        String titleText = "Minesweeper";
+
+        titleLayout.setText(titleFont, titleText);
+
         layout1.setText(font, widthText);
         layout2.setText(font, heightText);
         layout3.setText(font, minesText);
@@ -221,6 +228,7 @@ public final class MainMenuScreen implements Screen {
         font.draw(game.batch, widthText, Minesweeper.VIRTUAL_WIDTH / 2 - layout1.width / 2, boardWidthUpButtonPosY + smallButtonSize/2 + 8);
         font.draw(game.batch, heightText, Minesweeper.VIRTUAL_WIDTH / 2- layout2.width / 2, boardHeightUpButtonPosY + smallButtonSize/2 + 8);
         font.draw(game.batch, minesText, Minesweeper.VIRTUAL_WIDTH / 2- layout3.width / 2, minesUpButtonPosY + smallButtonSize/2 + 8);
+        titleFont.draw(game.batch, titleText, Minesweeper.VIRTUAL_WIDTH / 2- titleLayout.width / 2, Minesweeper.VIRTUAL_HEIGHT - 80);
 
         errorDisplay.render(game.batch, Gdx.graphics.getDeltaTime(),
                     Minesweeper.VIRTUAL_WIDTH,
